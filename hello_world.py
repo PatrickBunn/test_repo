@@ -5,4 +5,4 @@ import matplotlib
 import datetime
 from netCDF4 import Dataset
 from mpl_toolkits.basemap import Basemap
-print ("hello world")
+print ("loaded packages")
