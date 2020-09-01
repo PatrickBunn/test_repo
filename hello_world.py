@@ -25,7 +25,7 @@ m = Basemap(llcrnrlon=llon-.5,llcrnrlat=llat-.5,urcrnrlon=rlon+.5,urcrnrlat=ulat
             resolution='i', projection='mill',ax=ax1, epsg=4269)
 
 #server="http://server.arcgisonline.com/ArcGIS",
-#m.arcgisimage(service='ESRI_Imagery_World_2D', xpixels = 2000, verbose= True, ax=ax1)
+m.arcgisimage(service='ESRI_Imagery_World_2D', xpixels = 2000, verbose= True, ax=ax1)
 
 # add .shp file of the catchment
 #m.readshapefile(basin_file,'Feather Basin',linewidth=1.5,color='k')
