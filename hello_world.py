@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# %%
 import numpy as np
 import pandas as pd
 #import scipy as sp
@@ -11,6 +12,8 @@ from netCDF4 import Dataset
 from mpl_toolkits.basemap import Basemap
 from matplotlib.patches import Polygon
 #print ("loaded packages")
+
+# %% 
 
 #set a counding box for the map
 llon = -122.57
@@ -58,3 +61,5 @@ plt.tight_layout()
 #plt.show()
 plotfile = 'map_of_study_area.png'
 sf = fig.savefig(plotfile, dpi=300) # ,dpi=300)
+
+# %%
