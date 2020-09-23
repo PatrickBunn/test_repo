@@ -12,13 +12,13 @@ basin_file = 'HUC_15060202_shapefile/WBDHU8'
 
 # %%
 # set filename
-precip_forecast_file = 'gfs_precip_data/gfs.0p25.2020091500.f168.grib2.bunn447532.nc'
+precip_forecast_file = 'gfs_precip_data/gfs.0p25.2020091500.f336.grib2.bunn447532.nc'
 # use netCDF4.Dataset to read in .nc file 
 precip_forecast_data = Dataset(precip_forecast_file)
 # find varibale names and dimesions
 precip_forecast_data.variables
 # extract specific variables: lats, lons and precip
-precip_forecast = precip_forecast_data.variables['APCP_P8_L1_GLL0_acc168h']
+precip_forecast = precip_forecast_data.variables['APCP_P8_L1_GLL0_acc336h']
 lat = precip_forecast_data.variables['lat_0'][:]
 lon = precip_forecast_data.variables['lon_0'][:]
 
@@ -37,9 +37,6 @@ m = Basemap(llcrnrlon=np.min(lon)-360.,llcrnrlat=np.min(lat),urcrnrlon=np.max(lo
 #m.arcgisimage(service='ESRI_Imagery_World_2D', xpixels = 2000, verbose= True, ax=ax1)
 
 # draw coastlines, state and country boundaries, edge of map.
-#m.drawcoastlines()
-#m.drawcountries()
-#m.drawstates()
 m.drawcounties(zorder=2,linewidth=.25)
 
 # add .shp file of the catchment
@@ -65,7 +62,7 @@ cs = m.pcolormesh(x,y,precip_forecast[0,:,:],cmap=cmap,norm=norm)
 # add colorbar",
 cbar = m.colorbar(cs,location='bottom',pad="6%")
 cbar.ax.set_xticklabels(cbar.ax.get_xticklabels(),rotation=30)
-cbar.set_label('GFS forecast 7 day Accumulated Precipitation [$\\mathrm{mm}]$ \n Basin Mean = '+str(mean_precip_verde)+' [$\mathrm{mm}]$',size=10)
+cbar.set_label('GFS forecast 14 day Accumulated Precipitation [$\\mathrm{mm}]$ \n Basin Mean = '+str(mean_precip_verde)+' [$\mathrm{mm}]$',size=10)
 
 # add some reference locations to map
 x1,y1 = m(-111.8543, 34.5636) # add Camp Verde point
@@ -82,8 +79,7 @@ for loc,coord,xy in zip(locations,coords,xy_s):
                 fontsize=12,fontweight='bold')
 
 plt.tight_layout()
-plotfile = 'forecast_07_days_precip_accu.png'
+plotfile = 'forecast_14_days_precip_accu.png'
 #plotfile = 'map_of_study_area.png'
 sf = fig.savefig(plotfile, dpi=300) # ,dpi=300)
-
 # %%
